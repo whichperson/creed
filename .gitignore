@@ -6,6 +6,7 @@ orgfiles/
 idea/
 
 # Generated stuff
+dist/
 build/
 public/
 node_modules/
