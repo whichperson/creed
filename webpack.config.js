@@ -5,9 +5,9 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 module.exports = (env, options) => {
     return {
         mode: options.mode || 'development',
-        entry: './src/app.ts',
+        entry: './src/app.tsx',
         output: {
-            path: path.resolve(__dirname, './dist/'),
+            path: path.resolve(__dirname, 'dist/'),
             filename: 'static/js/[name].[fullhash].bundle.js',
             publicPath: '/'
         },
@@ -37,22 +37,11 @@ module.exports = (env, options) => {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
                     {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            minimize:  options.mode === 'production',
-                            sourceMap: true,
-                        }
+                        loader: MiniCssExtractPlugin.loader,
                     },
-                ],
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
                     'css-loader',
-                    'sass-loader',
+                    'postcss-loader'
                 ],
             },
             {
@@ -70,9 +59,9 @@ module.exports = (env, options) => {
                 filename: 'static/css/[name].[fullhash].css',
             }),
             new HTMLWebpackPlugin({
-                filename: 'index.html',
-                template: 'src/index.ejs',
-                favicon: 'src/favicon.ico',
+                filename: './index.html',
+                template: './src/index.ejs',
+                favicon: './src/favicon.ico',
             }),
         ]
     };
