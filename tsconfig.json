@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/",
+    "sourceMap": true,
+    "jsx": "react",
+    "target": "ES6",
+    "allowJs": true,
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "strict": true,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES6"
+    ],
+  },
+  "exclude": [ "node_modules" ]
+}
