@@ -1,0 +1,20 @@
+# Org files for planning
+orgfiles/
+
+# IntelliJ stuff
+.idea/
+idea/
+
+# Generated stuff
+build/
+public/
+node_modules/
+.npm/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+yarn.lock
+
+# MacOS
+.DS_Store
+
