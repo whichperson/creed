@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import trashIcon from '../assets/icons/trash-svgrepo-com.svg';
 import aboutIcon from '../assets/icons/information-info-svgrepo-com.svg';
 import notepadIcon from '../assets/icons/notepad-notebook-svgrepo-com.svg';
 import paintIcon from '../assets/icons/paint-palette-svgrepo-com.svg';
 
 export default function Desktop() {
-    const date = new Date();
-    const day = date.toLocaleDateString();
-    const time = date.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
+    const getCurrentDateObject = () => {
+        const currentDate = new Date();
+        const currentTime = currentDate.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
+        const currentDay = currentDate.toLocaleDateString();
+
+        return {
+            time: currentTime,
+            day: currentDay
+        };
+    };
+
+    const [ date, _setDate ] = useState(getCurrentDateObject());
+
+    useEffect(() => {
+        setInterval(() => {
+            return _setDate(getCurrentDateObject());
+        }, 3000);
+    }, []);
 
 
     return <div id="desktop" className="overflow-hidden h-full">
@@ -42,11 +57,11 @@ export default function Desktop() {
 
             <div className="taskbar-time flex flex-col text-center float-right justify-center items-center">
                 <div>
-                    <span className="text-[13px] p-3">{time}</span>
+                    <span className="text-[13px] p-3">{date.time}</span>
                 </div>
 
                 <div>
-                    <span className="text-[13px] p-3">{day}</span>
+                    <span className="text-[13px] p-3">{date.day}</span>
                 </div>
             </div>
         </div>
