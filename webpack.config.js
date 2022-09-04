@@ -45,11 +45,10 @@ module.exports = (env, options) => {
                 ],
             },
             {
-                test: /\.(jpeg|jpg|png|gif|svg|ico)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '/images/[name].[fullhash].[ext]',
-                    esModule: false,
+                test: /\.(jpeg|jpg|png|gif|svg|ico|eot|woff|ttf|woff2)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'static/assets/[name].[hash][ext][query]',
                 },
             },
             ]
