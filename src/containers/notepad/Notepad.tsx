@@ -6,7 +6,7 @@ import lightbulbIcon from '../../assets/icons/lightbulb-fill.svg';
 import { useWebSocketConnector } from '../../websocket/websocketconnector';
 
 
-export default function Notepad() {
+export default function Notepad({ onWindowClose }) {
     const { webSocketInstance } = useWebSocketConnector()!;
 
     const [ employee, _setEmployee ] = useState(webSocketInstance.getEmployee);
@@ -43,7 +43,7 @@ export default function Notepad() {
                     <span className="text-[16px]">Today's Thot (www.creedthoughts.gov.www/creedthoughts)</span>
                 </div>
 
-                <div className="h-30 p-4 flex items-center">
+                <div className="h-30 p-4 flex items-center" onClick={onWindowClose}>
                     <img src={closeIcon} className="max-h-20 max-w-20"/>
                 </div>
             </div>

@@ -37,6 +37,7 @@ export class WebSocketConnector {
             const uri = `${this._config.protocol}://${this._config.host}:${this._config.port}`;
             const socket = io(uri, {
                 reconnectionDelayMax: 10000,
+                transports: [ 'websocket', 'polling' ]
             });
             socket.connect();
 
