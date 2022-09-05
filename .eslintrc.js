@@ -7,7 +7,7 @@ module.exports = {
         node: true,
         jest: true,
     },
-    parser: '@babel/eslint-parser',
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             legacyDecorators: true,
@@ -20,6 +20,7 @@ module.exports = {
     plugins: [
         'react',
         'babel',
+        '@typescript-eslint'
     ],
     settings: {
         react: {

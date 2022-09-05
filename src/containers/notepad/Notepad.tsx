@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import notepadIcon from '../../assets/icons/notepad-notebook-svgrepo-com.svg';
 import closeIcon from '../../assets/icons/close-line.svg';
+import lightbulbIcon from '../../assets/icons/lightbulb-fill.svg';
+import { useWebSocketConnector, WebSocketConnector } from '../../websocket/websocketconnector';
 
 
 export default function Notepad() {
+    const { webSocketInstance } = useWebSocketConnector()!;
+
+    const [ employee, _setEmployee ] = useState(webSocketInstance.getEmployee);
+
     const onEditorChange = (value, event) => {
-        // Todo: sockets
-
-
+        // send the socket a message
     };
+
+    useEffect(() => {
+        _setEmployee(webSocketInstance.getEmployee);
+    }, [ webSocketInstance, webSocketInstance.getEmployee ]);
 
     return (
         <div id="notepad-editor" className="flex flex-col w-full h-full">
@@ -47,6 +55,16 @@ export default function Notepad() {
                         overviewRulerBorder: false
                     }}
                 />
+            </div>
+
+            <div className="notepad-editor-status my-1 items-center flex">
+                <div className="h-25 flex items-center p-2 w-full">
+                    {employee &&
+                        <><img src={lightbulbIcon} className="max-h-15 max-w-15 mr-2"/>
+                            <span className="text-[13px] italic">{employee.name} {employee.surname} joined</span>
+                        </>
+                    }
+                </div>
             </div>
         </div>
     );

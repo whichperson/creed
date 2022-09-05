@@ -14,6 +14,7 @@ module.exports = {
                 content: 'calc(-50px + 60vw)'
             },
             height: {
+                25: '25px',
                 30: '30px',
                 35: '35px',
                 45: '45px',
@@ -32,12 +33,14 @@ module.exports = {
                 500: '500px'
             },
             maxWidth: {
+                15: '15px',
                 20: '20px',
                 30: '30px',
                 45: '45px',
                 110: '110px'
             },
             maxHeight: {
+                15: '15px',
                 20: '20px',
                 30: '30px',
                 45: '45px'
