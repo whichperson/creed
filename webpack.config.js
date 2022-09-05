@@ -1,17 +1,19 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const NodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin');
+
 
 module.exports = (env, options) => {
     return {
         mode: options.mode || 'development',
-        entry: './src/app.tsx',
+        entry: path.resolve(__dirname, 'src/app.tsx'),
         output: {
-            path: path.resolve(__dirname, 'dist/'),
-            filename: 'static/js/[name].[fullhash].bundle.js',
+            path: path.resolve(__dirname, 'public'),
+            filename: 'static/js/[name].[contenthash].bundle.js',
             publicPath: '/'
         },
-        devtool: 'eval-cheap-source-map',
+        devtool: options.mode === 'development' && 'inline-cheap-source-map',
         devServer: {
             compress: true,
             historyApiFallback: true,
@@ -21,7 +23,7 @@ module.exports = (env, options) => {
             }
         },
         resolve: {
-            extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+            extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
         },
         module: {
             rules: [ {
@@ -48,14 +50,15 @@ module.exports = (env, options) => {
                 test: /\.(jpeg|jpg|png|gif|svg|ico|eot|woff|ttf|woff2)$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'static/assets/[name].[hash][ext][query]',
+                    filename: 'static/assets/[name].[contenthash][ext][query]',
                 },
             },
             ]
         },
         plugins: [
+            new NodePolyfillWebpackPlugin(),
             new MiniCssExtractPlugin({
-                filename: 'static/css/[name].[fullhash].css',
+                filename: 'static/css/[name].[contenthash].css',
             }),
             new HTMLWebpackPlugin({
                 filename: './index.html',

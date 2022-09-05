@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./public/",
     "sourceMap": true,
     "jsx": "react",
     "target": "ES6",
     "allowJs": true,
     "module": "ESNext",
     "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "strict": true,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,

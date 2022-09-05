@@ -3,12 +3,13 @@ import trashIcon from '../assets/icons/trash-svgrepo-com.svg';
 import aboutIcon from '../assets/icons/information-info-svgrepo-com.svg';
 import notepadIcon from '../assets/icons/notepad-notebook-svgrepo-com.svg';
 import paintIcon from '../assets/icons/paint-palette-svgrepo-com.svg';
+import Notepad from './notepad/Notepad';
 
 export default function Desktop() {
     const getCurrentDateObject = () => {
         const currentDate = new Date();
         const currentTime = currentDate.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
-        const currentDay = currentDate.toLocaleDateString();
+        const currentDay = currentDate.toLocaleDateString([ 'en-GB' ]);
 
         return {
             time: currentTime,
@@ -26,18 +27,23 @@ export default function Desktop() {
 
 
     return <div id="desktop" className="overflow-hidden h-full">
-        <div id="background" className="h-desktop flex flex-col">
-            <div id="trash" className="desktop-item w-50 mx-10 mt-10 h-100 text-center float-left">
-                <div className="desktop-item-icon flex w-45 h-45 justify-center items-center">
-                    <img className="desktop-item-icon-svg max-w-45 max-h-45" src={trashIcon}/>
+        <div id="background" className="h-desktop">
+            <div className="desktop-icons flex flex-col">
+                <div id="trash" className="desktop-item w-50 mx-10 mt-10 h-100 text-center float-left">
+                    <div className="desktop-item-icon flex w-45 h-45 justify-center items-center">
+                        <img className="desktop-item-icon-svg max-w-45 max-h-45" src={trashIcon}/>
+                    </div>
+                    <span className="desktop-item-icon-label max-w-110 inline-block font-bold text-white text-[14px] mt-2 p-1 drop-shadow rounded">Trash</span>
                 </div>
-                <span className="desktop-item-icon-label max-w-110 inline-block font-bold text-white text-[14px] mt-2 p-1 drop-shadow rounded">Trash</span>
+                <div id="about" className="desktop-item w-50 mx-10 mt-5 h-100 text-center float-left">
+                    <div className="desktop-item-icon flex w-45 h-45 justify-center items-center">
+                        <img className="desktop-item-icon-svg max-w-45 max-h-45" src={aboutIcon}/>
+                    </div>
+                    <span className="desktop-item-icon-label max-w-110 inline-block font-bold text-white text-[14px] mt-2 p-1 drop-shadow rounded">About</span>
+                </div>
             </div>
-            <div id="about" className="desktop-item w-50 mx-10 mt-5 h-100 text-center float-left">
-                <div className="desktop-item-icon flex w-45 h-45 justify-center items-center">
-                    <img className="desktop-item-icon-svg max-w-45 max-h-45" src={aboutIcon}/>
-                </div>
-                <span className="desktop-item-icon-label max-w-110 inline-block font-bold text-white text-[14px] mt-2 p-1 drop-shadow rounded">About</span>
+            <div className="content absolute bg-white/[0.8] shadow rounded-lg top-0 left-0 bottom-0 right-0 m-auto z-40 h-content w-content top-0 overflow-hidden flex items-center justify-center">
+                <Notepad/>
             </div>
         </div>
 
@@ -59,7 +65,6 @@ export default function Desktop() {
                 <div>
                     <span className="text-[13px] p-3">{date.time}</span>
                 </div>
-
                 <div>
                     <span className="text-[13px] p-3">{date.day}</span>
                 </div>

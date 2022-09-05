@@ -21,6 +21,12 @@ module.exports = {
         'react',
         'babel',
     ],
+    settings: {
+        react: {
+            pragma: 'React',
+            version: '18.2.0',
+        },
+    },
     rules: {
         // Possible Errors (overrides from recommended set)
         'no-extra-parens': ERROR,
