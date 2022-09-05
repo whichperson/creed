@@ -29,6 +29,7 @@ export class WebSocketConnector {
 
         // Bind functions
         this._connect = this._connect.bind(this);
+        this.sendContent = this.sendContent.bind(this);
     }
 
     _connect() {
@@ -49,10 +50,32 @@ export class WebSocketConnector {
                 this._employee = data.employee;
             });
 
+            this._socket.on('content updated', (data) => {
+                this._content = data;
+            });
+
+            this._socket.on('disconnect', () => {
+                this._employee = null;
+                this._content = null;
+                this._connected = false;
+            });
+
             this._socket.on('connect_error', (error) => {
                 console.error('Could not establish connection to server', error);
             });
         }
+    }
+
+    sendContent(content) {
+        if (!this._connected) {
+            console.error('Error connecting to server');
+        }
+
+        if (this._socket != null) {
+            this._socket.emit('update content', content);
+        }
+
+        return true;
     }
 
     // Getters

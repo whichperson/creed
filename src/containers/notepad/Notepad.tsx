@@ -3,21 +3,37 @@ import Editor from '@monaco-editor/react';
 import notepadIcon from '../../assets/icons/notepad-notebook-svgrepo-com.svg';
 import closeIcon from '../../assets/icons/close-line.svg';
 import lightbulbIcon from '../../assets/icons/lightbulb-fill.svg';
-import { useWebSocketConnector, WebSocketConnector } from '../../websocket/websocketconnector';
+import { useWebSocketConnector } from '../../websocket/websocketconnector';
 
 
 export default function Notepad() {
     const { webSocketInstance } = useWebSocketConnector()!;
 
     const [ employee, _setEmployee ] = useState(webSocketInstance.getEmployee);
+    const [ content, _setContent ] = useState(webSocketInstance.getContent);
 
-    const onEditorChange = (value, event) => {
-        // send the socket a message
+    const onEditorChange = (value) => {
+        webSocketInstance.sendContent(value);
     };
 
     useEffect(() => {
-        _setEmployee(webSocketInstance.getEmployee);
+        const currentEmployee = webSocketInstance.getEmployee;
+        if (currentEmployee != null) {
+            _setEmployee(currentEmployee);
+        } else {
+            setInterval(() => {
+                _setEmployee(null);
+            }, 15000);
+        }
     }, [ webSocketInstance, webSocketInstance.getEmployee ]);
+
+    useEffect(() => {
+        const currentContent = webSocketInstance.getContent;
+        if (currentContent != null) {
+            _setContent(currentContent);
+        }
+    }, [ webSocketInstance, webSocketInstance.getContent ]);
+
 
     return (
         <div id="notepad-editor" className="flex flex-col w-full h-full">
@@ -36,6 +52,7 @@ export default function Notepad() {
                     height="100%"
                     defaultLanguage="plainText"
                     onChange={onEditorChange}
+                    value={content!!}
                     options={{
                         quickSuggestions: false,
                         fontFamily: 'Ubuntu, sans-serif',
