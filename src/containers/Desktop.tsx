@@ -75,6 +75,7 @@ export default function Desktop() {
                     return onWindowOpen(3, ev);
                 }}>
                     <div className="taskbar-item-icon h-35">
+                        {openWindow !== 3 && <div className="inline-flex shadow items-center justify-center absolute bg-red-500 h-15 w-15 top-2 rounded-full text-xs text-white font-bold">1</div>}
                         <img className="taskbar-item-icon-svg h-full p-1" src={notepadIcon}/>
                     </div>
                 </div>

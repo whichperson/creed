@@ -6,6 +6,13 @@ import lightbulbIcon from '../../assets/icons/lightbulb-fill.svg';
 import { useWebSocketConnector } from '../../websocket/websocketconnector';
 
 
+const AYDAN_MESSAGE = 'Hi, bestie! Long time no see, loca! \nI bet I know what you\'re doing right now. You\'re working. Dios mio, I am truly a bruja.' +
+    '\n\nI made this for you. It\'s your very own Creed Thoughts journal. You can write all your thoughts and I\'ll be able to read them even while you\'re typing (thanks, websockets!). No more communication via telepathy. Okay, time for my birthday wish, buckle up.' +
+    '\n\nFor your 22nd birthday, I wish you content. Not Youtube content, but satisfaction with your life. You will have everything you want because you have all the means and potential to get where you want to be. I often complain about you being obsessed with The Office when in reality I admire your ability to enjoy even the simplest things in life. You\'re the greatest friend. Always there to support me, even when I build walls so high all my bricks collapse and hit you on the head. I close a door in your face only to open another one and find you right behind it. I am truly lucky to have you in my life.' +
+    '\n\nWhen I return, I hope we get to have lots of fun being the standup comedians we are. Keep gaslighting, gatekeeping, girlbossing. And slay every day, queen.' +
+    '\n\nYour Friend of 5 Years Who Kept Mispronouncing your Name for 4 of Them | Susan From Friends | Coworker | Wannabe Farmer | Gym Buddy | Trauma Buddy | What else?' +
+    '\n\n\n\nP.S. Please send me the measurements for the Schrute poster. It\'s another piece of your birthday puzzle.';
+
 export default function Notepad({ onWindowClose }) {
     const { webSocketInstance } = useWebSocketConnector()!;
 
@@ -40,7 +47,7 @@ export default function Notepad({ onWindowClose }) {
             <div className="notepad-editor-header my-2 flex justify-end items-center">
                 <div className="h-30 flex p-4 flex-row items-center w-full">
                     <img src={notepadIcon} className="max-h-20 max-w-20 mr-2"/>
-                    <span className="text-[16px]">Today's Thot (www.creedthoughts.gov.www/creedthoughts)</span>
+                    <span className="text-[16px]">It's my best friend's birthday! (www.creedthoughts.gov.www/creedthoughts)</span>
                 </div>
 
                 <div className="h-30 p-4 flex items-center" onClick={onWindowClose}>
@@ -52,6 +59,7 @@ export default function Notepad({ onWindowClose }) {
                     height="100%"
                     defaultLanguage="plainText"
                     onChange={onEditorChange}
+                    defaultValue={AYDAN_MESSAGE}
                     value={content!!}
                     options={{
                         quickSuggestions: false,

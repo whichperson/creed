@@ -8,6 +8,7 @@ module.exports = {
             width: {
                 10: '10px',
                 15: '15px',
+                20: '20px',
                 35: '35px',
                 40: '40px',
                 45: '45px',
@@ -21,6 +22,7 @@ module.exports = {
             height: {
                 10: '10px',
                 15: '15px',
+                20: '20px',
                 25: '25px',
                 30: '30px',
                 35: '35px',
