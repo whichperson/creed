@@ -9,8 +9,8 @@ import { io, Socket } from 'socket.io-client';
 
 
 const DefaultConfiguration: WebSocketConnectorConfiguration = {
-    protocol: 'ws',
-    host: 'localhost',
+    protocol: 'https',
+    host: 'shielded-retreat-55120.herokuapp.com',
     port: 3000
 };
 
@@ -34,7 +34,7 @@ export class WebSocketConnector {
 
     _connect() {
         if (!this._connected) {
-            const uri = `${this._config.protocol}://${this._config.host}:${this._config.port}`;
+            const uri = `${this._config.protocol}://${this._config.host}`;
             const socket = io(uri, {
                 reconnectionDelayMax: 10000,
                 transports: [ 'websocket', 'polling' ]
