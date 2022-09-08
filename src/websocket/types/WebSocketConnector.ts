@@ -1,5 +1,5 @@
 import React from 'react';
-import { WebSocketConnector } from '../websocketconnector';
+import WebSocketConnector from '../websocketconnector';
 
 
 export type WebSocketConnectorConfiguration = {
@@ -9,12 +9,12 @@ export type WebSocketConnectorConfiguration = {
 }
 
 export type WebSocketConnectorContext = {
-    webSocketInstance: WebSocketConnector,
+    webSocketInstance: typeof WebSocketConnector,
 }
 
 
-export type WebSocketConnectorProviderProps = {
-    webSocketInstance: WebSocketConnector,
+export type WebSocketConnectorProps = {
+    configuration: WebSocketConnectorConfiguration | null,
     children: React.ReactNode
 }
 

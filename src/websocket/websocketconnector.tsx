@@ -109,11 +109,12 @@
 // }
 
 import React from 'react';
-import { WebSocketConnectorConfiguration, WebSocketConnectorContext as WebSocketConnectorContextType } from './types/WebSocketConnector';
+import {
+    WebSocketConnectorProps
+} from './types/WebSocketConnector';
 
-export default function WebSocketConnector(configuration: WebSocketConnectorConfiguration) {
-
-
+export default function WebSocketConnector({ configuration, children }: WebSocketConnectorProps) {
+    return <>{children}</>;
 }
 
 
