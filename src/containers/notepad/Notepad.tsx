@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import notepadIcon from '../../assets/icons/notepad-notebook-svgrepo-com.svg';
 import closeIcon from '../../assets/icons/close-line.svg';
